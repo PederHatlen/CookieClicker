@@ -1,0 +1,51 @@
+html{height: 100%;}
+body{
+	margin: 0;
+	min-height: 100%;
+	font-family: sans-serif;
+	color: white;
+	display: grid;
+	grid-template: 5rem 1fr 5rem/1fr;
+	background: #111;
+}
+header, main, footer, #timeup, .vertical{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+main{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+}
+#cookie{
+	height: 50vmin;
+}
+#cookie:active{width: 48vmin;}
+
+h1{margin: 0;}
+img{height: 5rem;}
+
+#timeup{
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #000000a0;
+}
+#timeupBox{
+	background: rgb(182, 36, 138);
+	padding: 20px;
+	user-select: none;
+}
+#tryAgain{
+	text-decoration: underline;
+	cursor: pointer;
+}
+#tryAgain:hover{opacity: 75%;}
+
+.vertical{flex-direction: column;}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookie Clicker</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header><h1>Kjeks Klikker</h1></header>
+	<main>
+		<div id="info" class="vertical">
+			<h2 id="timer">Start ved å klikke på Kjeksen</h2>
+			<h2><span id="clicks">0</span> kjeks</h2>
+		</div>
+		<img src="images/cookie.png" alt="Cookie" title="cookie" id="cookie" tabindex="0" draggable="false">
+	</main>
+	<footer><img src="images/IMImage.png" alt="IM-Kuben"></footer>
+	<div id="timeup">
+		<div id="timeupBox" class="vertical">
+			<h1>Tiden er ute!</h1>
+			<h2>Du klarte å få <span id="clickRes">0 kjeks på 30</span> sekunder!</h2>
+			<span id="tryAgain" onclick="timeupEl.style.display = '';" tabindex="0">Prøv igjen?</span>
+		</div>
+	</div>
+	<script src="js/script.js"></script>
+</body>
+</html>
