@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cookie Clicker</title>
-	<link rel="stylesheet" href="css/clientStyle.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <style>
+        #timeup{display: none;}
+    </style>
 </head>
 <body>
-	<header><h1>Kjeks Klikker</h1></header>
-	<main>
+    <main>
 		<div id="info" class="vertical">
-			<h2><span id="clicks"></span><span id="timer">Start ved å klikke på Kjeksen</span></h2>
+			<h2 id="timer">Start ved å klikke på Kjeksen</h2>
+			<h2><span id="clicks">0</span> kjeks</h2>
 		</div>
-		<img src="images/smallCookie.png" alt="Cookie" title="cookie" id="cookie" tabindex="0" draggable="false">
+		<img src="images/cookie.png" alt="Cookie" title="cookie" id="cookie" tabindex="0" draggable="false">
 	</main>
-	<div id="timeup" class="vertical">
+    <div id="timeup" class="vertical">
 		<div id="timeupBox" class="vertical">
 			<h1>Tiden er ute!</h1>
+			<span id="tryAgain" onclick="tryAgain();" tabindex="0">Prøv igjen?</span>
 			<h2>Du klarte å få <span id="clickRes">0 kjeks på 30</span> sekunder!</h2>
 			<form action="http://10.2.2.98:8000/" method="post" class="vertical" id="form"><!--http://10.0.13.37/CookieClicker/php/post.php-->
 				<table>
@@ -29,6 +32,6 @@
 			<span id="tryAgain" onclick="tryAgain();" tabindex="0">Prøv igjen?</span>
 		</div>
 	</div>
-	<script src="js/clientScript.js"></script>
+    <script src="js/clientScript.js"></script>
 </body>
 </html>

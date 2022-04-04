@@ -27,7 +27,7 @@ function cookieClick(){
 			requestAnimationFrame(timer);
 		}
 		clicks++;
-		clicksEl.innerHTML = clicks;
+		clicksEl.innerHTML = clicks+" klikk ";
 	}
 }
 
@@ -35,7 +35,7 @@ function cookieClick(){
 function timeup(){
 	clickResEl.innerHTML = clicks+" kjeks på "+(timerLen/1000); // timerLen is milliseconds /1000 to get seconds
 	timerEl.innerHTML = "Start ved å klikke på Kjeksen";
-	clicksEl.innerHTML = "0";
+	clicksEl.innerHTML = "";
 
 	timeupEl.style.display = "flex";
 }

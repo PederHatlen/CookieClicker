@@ -21,10 +21,8 @@ main{
 	align-items: center;
 	margin: 0;
 }
-#cookie{
-	height: 50vmin;
-}
-#cookie:active{width: 48vmin;}
+#cookie{height: 50vmin;}
+#cookie:active{width: 48vmin; height: 48vmin;}
 
 h1{margin: 0;}
 img{height: 5rem;}
@@ -49,5 +47,7 @@ img{height: 5rem;}
 	cursor: pointer;
 }
 #tryAgain:hover{opacity: 75%;}
+
+td{text-align: right;}
 
 .vertical{flex-direction: column;}
