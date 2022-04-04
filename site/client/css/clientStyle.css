@@ -4,11 +4,12 @@ body{
 	min-height: 100%;
 	font-family: sans-serif;
 	color: white;
+	background: black;
+	background-size: cover;
 	display: grid;
-	grid-template: 5rem 1fr 5rem/1fr;
-	background: #111;
+	grid-template: 5rem 1fr/1fr;
 }
-header, main, footer, #timeup, .vertical{
+header, main, footer, .vertical{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -31,6 +32,7 @@ img{height: 5rem;}
 #timeup{
 	display: none;
 	position: absolute;
+	justify-content: start;
 	width: 100%;
 	height: 100%;
 	top: 0;

@@ -1,0 +1,49 @@
+html, body{height: 100%;}
+body{
+	margin: 0;
+	color: white;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+	display: grid;
+	grid-template-rows:  5rem 1fr 1fr 3rem;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+	"header header"
+	"main newest"
+	"main clients"
+	"footer footer";
+}
+h1, h2{margin: 0;}
+header, main, #newest, #clients, footer{padding: 0 20px;}
+header{
+	grid-area: header;
+	background: #000;
+}
+header img, footer img{
+	height: 2rem;
+	padding: 0 10px;
+}
+footer img{height: 1.5rem;}
+main{
+	grid-area: main;
+	background: #b50077;
+	height: 100%;
+	overflow-y: hidden;
+}
+#newest{
+	grid-area: newest;
+	color: #b50077;
+}
+#clients{grid-area: clients}
+footer{
+	grid-area: footer;
+	background: #000;
+}
+
+.horizontal, header, footer{
+	display: flex;
+	align-items: center;
+}
+table{border-spacing: 0.25rem 1rem;}
+th{font-size: 1.5rem;}
+td{font-size: 1.5rem;}

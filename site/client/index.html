@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookie Clicker</title>
+	<link rel="stylesheet" href="css/clientStyle.css">
+</head>
+<body>
+	<header><h1>Kjeks Klikker</h1></header>
+	<main>
+		<div id="info" class="vertical">
+			<h2 id="timer">Start ved å klikke på Kjeksen</h2>
+			<h2><span id="clicks">0</span> kjeks</h2>
+		</div>
+		<img src="images/cookie.png" alt="Cookie" title="cookie" id="cookie" tabindex="0" draggable="false">
+	</main>
+	<div id="timeup" class="vertical">
+		<div id="timeupBox" class="vertical">
+			<h1>Tiden er ute!</h1>
+			<span id="tryAgain" onclick="tryAgain();" tabindex="0">Prøv igjen?</span>
+			<h2>Du klarte å få <span id="clickRes">0 kjeks på 30</span> sekunder!</h2>
+			<form action="http://10.2.2.98:8000/" method="post" class="vertical" id="form"><!--http://10.0.13.37/CookieClicker/Database/php/post.php-->
+				<table>
+					<tr><td><label for="navn">Navn: </label></td><td><input type="text" name="navn" id="navn" placeholder="Navn" required></td></tr>
+					<tr><td><label for="tlf">Telefonnummer: </label></td><td><input type="tel" pattern="[1-9]" name="tlf" id="tlf" placeholder="tlf (Trengs ikke)"></td></tr>
+				</table>
+				<br>
+				<input type="submit" value="Send resultat">
+				<span id="status">&nbsp;</span>
+			</form><br>
+		</div>
+	</div>
+	<script src="js/clientScript.js"></script>
+</body>
+</html>

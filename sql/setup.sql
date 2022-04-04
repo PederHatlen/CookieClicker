@@ -19,3 +19,10 @@ CREATE TABLE resultat (
 
 insert into klienter (navn) VALUES ("Peder");
 insert into klienter (navn) VALUES ("Jonas");
+
+
+create user 'api'@'%' identified with mysql_native_password by [API Password];
+create user 'cookie_io'@'%' identified with mysql_native_password by [cookie_io Password];
+
+GRANT INSERT, SELECT on cookieMainframe.* TO 'api'@'%';
+GRANT INSERT, SELECT on cookieMainframe.* TO 'cookie_io'@'%';

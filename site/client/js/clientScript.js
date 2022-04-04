@@ -1,0 +1,72 @@
+let cookiEl = document.getElementById("cookie");
+let clicksEl = document.getElementById("clicks");
+let formEl = document.getElementById("form");
+
+let timerEl = document.getElementById("timer");
+let timeupEl = document.getElementById("timeup");
+let clickResEl = document.getElementById("clickRes");
+let statusEl = document.getElementById("status")
+
+let inputAkEl = document.getElementById("ak");
+
+let timerLen = 3000; // Timer length in milliseconds
+let CID = 1;
+
+let clicks = 0;
+let endtime;
+let stoptimer = false;
+
+// Event handelers for both click and enter key.
+cookiEl.addEventListener("click", cookieClick);
+
+// registering clicks and starting timer
+function cookieClick(){
+	if(!stoptimer){
+		if (clicks === 0) {
+			endtime = Date.now() + timerLen;
+			requestAnimationFrame(timer);
+		}
+		clicks++;
+		clicksEl.innerHTML = clicks;
+	}
+}
+
+// When the time runs out, reset text boxes, and show timeupbox.
+function timeup(){
+	clickResEl.innerHTML = clicks+" kjeks på "+(timerLen/1000); // timerLen is milliseconds /1000 to get seconds
+	timerEl.innerHTML = "Start ved å klikke på Kjeksen";
+	clicksEl.innerHTML = "0";
+
+	timeupEl.style.display = "flex";
+}
+
+function tryAgain(){
+	clicks = 0;
+	stoptimer = false;
+	timeupEl.style.display = "none";
+}
+
+// Timer function
+function timer(){
+	let time = Date.now();
+    if(time >= endtime) stoptimer = true;
+	timerEl.innerHTML = endtime-time;
+    if(stoptimer) timeup();
+	else requestAnimationFrame(timer);
+}
+
+formEl.addEventListener("submit", async function(e){
+	e.preventDefault();
+
+	let formdata = new FormData(formEl);
+	formdata.append("cid", CID);
+	formdata.append("ak", clicks);
+
+	await fetch("http://10.2.2.98:8000", {
+		method: 'POST',
+		mode: 'no-cors',
+		headers: {'Content-Type' : 'multipart/formdata'},
+		body: formdata,
+	});
+	tryAgain();
+});
