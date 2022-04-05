@@ -9,7 +9,7 @@ let statusEl = document.getElementById("status")
 
 let inputAkEl = document.getElementById("ak");
 
-let timerLen = 30000; // Timer length in milliseconds
+let timerLen = 3000; // Timer length in milliseconds
 let CID = 1;
 
 let clicks = 0;
@@ -55,7 +55,7 @@ function timer(){
 	else requestAnimationFrame(timer);
 }
 
-formEl.addEventListener("submit",function(e){
+formEl.addEventListener("submit", function(e){
 	e.preventDefault;
 	sendData(e, formEl, CID, clicks);
 	tryAgain();
