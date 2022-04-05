@@ -9,7 +9,7 @@ let statusEl = document.getElementById("status")
 
 let inputAkEl = document.getElementById("ak");
 
-let timerLen = 3000; // Timer length in milliseconds
+let timerLen = 30000; // Timer length in milliseconds
 let CID = 1;
 
 let clicks = 0;
@@ -55,18 +55,8 @@ function timer(){
 	else requestAnimationFrame(timer);
 }
 
-formEl.addEventListener("submit", async function(e){
-	e.preventDefault();
-
-	let formdata = new FormData(formEl);
-	formdata.append("cid", CID);
-	formdata.append("ak", clicks);
-
-	await fetch("http://10.2.2.98:8000", {
-		method: 'POST',
-		mode: 'no-cors',
-		headers: {'Content-Type' : 'multipart/formdata'},
-		body: formdata,
-	});
+formEl.addEventListener("submit",function(e){
+	e.preventDefault;
+	sendData(e, formEl, CID, clicks);
 	tryAgain();
 });
