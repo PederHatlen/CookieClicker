@@ -25,6 +25,11 @@ header img, footer img{
 	padding: 0 10px;
 }
 footer img{height: 1.5rem;}
+
+main, #newest, #clients{
+	height: 100%;
+	overflow-y: hidden;
+}
 main{
 	grid-area: main;
 	background: #b50077;
@@ -35,7 +40,10 @@ main{
 	grid-area: newest;
 	color: #b50077;
 }
-#clients{grid-area: clients}
+#clients{
+	grid-area: clients;
+	background: #810AC2;
+}
 footer{
 	grid-area: footer;
 	background: #000;
