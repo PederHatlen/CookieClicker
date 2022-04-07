@@ -22,6 +22,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Leaderboard</title>
+	<link rel="shortcut icon" href="images/im.svg" type="image/x-icon">
 	<link rel="stylesheet" href="css/leaderboardStyle.css">
 </head>
 <body>
@@ -31,15 +32,15 @@
 	</header>
 	<div id="main">
 		<h2>Toppliste</h2>
-		<table><tbody><?php foreach ($leadeboardResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td></tr>");}?></tbody></table>
+		<table><tbody><?php foreach ($leadeboardResults as $row) {echo("<tr><th class=\"placement\">#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td></tr>");}?></tbody></table>
 	</div>
 	<div id="newest">
 		<h2>Nyeste</h2>
-		<table><tbody><?php foreach ($timeResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td>");}?></tbody></table>
+		<table><tbody><?php foreach ($timeResults as $row) {echo("<tr><th class=\"placement\">#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td>");}?></tbody></table>
 	</div>
 	<div id="client">
 		<h2>Klienter</h2>
-		<table><tbody><?php for ($i=0;$i<count($clients);$i++) {echo("<tr><th>#".($i+1)."</th><td class=\"num\">".$clients[$i]["plays"]."</td><td>".$clients[$i]["navn"]."</td></tr>");}?></tbody></table>
+		<table><tbody><?php for ($i=0;$i<count($clients);$i++) {echo("<tr><th class=\"placement\">#".($i+1)."</th><td class=\"num\">".$clients[$i]["plays"]."</td><td>".$clients[$i]["navn"]."</td></tr>");}?></tbody></table>
 	</div>
 </body>
 </html>
