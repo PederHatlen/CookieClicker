@@ -13,8 +13,7 @@
 
 	$stmt = $con->prepare('SELECT COUNT(DISTINCT resultat.resultat_id) as plays, klienter.navn, klienter.klient_id FROM klienter LEFT JOIN resultat on klienter.klient_id = resultat.klient_id GROUP BY klienter.navn ORDER BY plays desc');
 	$stmt->execute();
-	$klientStats = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-	
+	$clients = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -26,11 +25,21 @@
 	<link rel="stylesheet" href="css/leaderboardStyle.css">
 </head>
 <body>
-	<header><img src="images/Pointer.svg" alt="Pointer"><h1>Leaderboard</h1></header>
-	<main><table><?php foreach ($leadeboardResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td>".$row["klikk"]." klikk</td><td>|</td><td>".$row["navn"]."</td></tr>");}?></table></main>
-	<div id="newest"><table><?php foreach ($timeResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td>".$row["klikk"]." klikk</td><td>|</td><td>".$row["navn"]."</td><td>".$row["created_at"]."</td></tr>");}?></table></div>
-	<div id="clients"><table><?php for ($i = 0; $i < count($klientStats); $i++) {echo("<tr><th>#".($i+1)."</th><th>".$klientStats[$i]["plays"]."</th><td>gang".($klientStats[$i]["plays"] != 1? "er":"")."</td><td>|</td><td>".$klientStats[$i]["navn"]."</td></tr>");}?></table></div>
-	<footer><h2>Laget av IMI på Kuben</h2><img src="images/im.svg" alt="IM"></h2></footer>
+	<header>
+		<h1 class="horizontal"><img src="images/Pointer.svg" alt="Pointer">Leaderboard</h1>
+		<img src="images/kuben_im.svg" alt="Kuben IM">
+	</header>
+	<div id="main">
+		<h2>Toppliste</h2>
+		<table><tbody><?php foreach ($leadeboardResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td></tr>");}?></tbody></table>
+	</div>
+	<div id="newest">
+		<h2>Nyeste</h2>
+		<table><tbody><?php foreach ($timeResults as $row) {echo("<tr><th>#".$row["rn"]."</th><td class=\"num\">".$row["klikk"]."</td><td>".$row["navn"]."</td>");}?></tbody></table>
+	</div>
+	<div id="client">
+		<h2>Klienter</h2>
+		<table><tbody><?php for ($i=0;$i<count($clients);$i++) {echo("<tr><th>#".($i+1)."</th><td class=\"num\">".$clients[$i]["plays"]."</td><td>".$clients[$i]["navn"]."</td></tr>");}?></tbody></table>
+	</div>
 </body>
-<script></script>
 </html>

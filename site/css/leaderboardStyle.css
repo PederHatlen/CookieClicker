@@ -1,58 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-html, body{height: 100%;}
+html, body, main{height: 100%;}
 body{
-	margin: 0;
 	color: white;
 	font-family: 'Roboto', sans-serif;
 
 	display: grid;
-	grid-template-rows:  5rem 1fr 1fr 3rem;
-	grid-template-columns: 1fr 1fr;
-	grid-template-areas:
-	"header header"
+	grid-template:  5rem 1fr 1fr/1fr 1fr;
+	grid-template-areas: "header header"
 	"main newest"
-	"main clients"
-	"footer footer";
+	"main client";
 }
-h1, h2{margin: 0;}
-header, main, #newest, #clients, footer{padding: 0 20px;}
+body, h1, h2{margin: 0;}
+h2{
+	padding: 10px;
+}
+
 header{
 	grid-area: header;
+	padding: 0 20px;
+	justify-content: space-between;
 	background: #000;
 }
-header img, footer img{
-	height: 2rem;
+img{
+	height: 1.5rem;
 	padding: 0 10px;
 }
-footer img{height: 1.5rem;}
+#connectionInfo{padding: 2px;}
 
-main, #newest, #clients{
+#main, #newest, #client{
 	height: 100%;
-	overflow-y: hidden;
+	overflow: hidden;
+	padding: 0 20px;
 }
-main{
+#main{
 	grid-area: main;
 	background: #b50077;
-	height: 100%;
-	overflow-y: hidden;
 }
 #newest{
 	grid-area: newest;
 	color: #b50077;
 }
-#clients{
-	grid-area: clients;
+#client{
+	grid-area: client;
 	background: #810AC2;
 }
-footer{
-	grid-area: footer;
-	background: #000;
+table{border-spacing: 0px 0px;}
+th, td{
+	font-size: 1.5rem;
+	text-align: left;
+	padding: 0px 10px;
+}
+th{
+	padding: 5px 10px;
+	border-right: 2px solid ;
+}
+.num{
+	text-align: center;
 }
 
-.horizontal, header, footer{
+
+.horizontal, header, footer, h1{
 	display: flex;
 	align-items: center;
 }
-table{border-spacing: 0.25rem 1rem;}
-th{font-size: 1.5rem;}
-td{font-size: 1.5rem;}
