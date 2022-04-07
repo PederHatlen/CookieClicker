@@ -56,7 +56,7 @@ function timer(){
 }
 
 formEl.addEventListener("submit", function(e){
-	e.preventDefault;
-	sendData(e, formEl, CID, clicks);
+	e.preventDefault();
+	sendData(formEl, CID, clicks);
 	tryAgain();
 });
