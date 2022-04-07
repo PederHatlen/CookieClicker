@@ -7,15 +7,15 @@ let clientTableEl = document.getElementById("clientTable");
 let soccAddr = "10.22.39.100:8000";
 let showDebug = false;
 
-let results = leaderboardres;
-let clients = sort2d(klienterres, "cid", false);
+let results;
+let clients;
 
 // Async function for getting init data, and starting websocket.
 // Async because of fetch which "needs" await
 async function startup(){
 	let socket = io(`ws://${soccAddr}`);
-	// results = await fetch(`http://${soccAddr}`).then((r)=>{return r.json()});
-	// clients = await fetch(`http://${soccAddr}/klienter`).then((r)=>{return r.json()});
+	results = await fetch(`http://${soccAddr}`).then((r)=>{return r.json()});
+	clients = await fetch(`http://${soccAddr}/klienter`).then((r)=>{return r.json()});
 
 	// On message, add to results and rerender
 	socket.on("message", data => {results.push(data); render();});
@@ -56,8 +56,8 @@ function render(){
 
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
-		mainTableEl.innerHTML+= `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th>#${toppsorted[i]["pos"]}</th><td class=\"num\">${toppsorted[i]["ak"]}</td><td>${toppsorted[i]["navn"]}</td></tr>`;
-		newestTableEl.innerHTML += `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th>#${timesorted[i]["pos"]}</th><td class=\"num\">${timesorted[i]["ak"]}</td><td>${timesorted[i]["navn"]}</td></tr>`
+		mainTableEl.innerHTML+= `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th class=\"placement\">#${toppsorted[i]["pos"]}</th><td class=\"num\">${toppsorted[i]["ak"]}</td><td>${toppsorted[i]["navn"]}</td></tr>`;
+		newestTableEl.innerHTML += `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th class=\"placement\">#${timesorted[i]["pos"]}</th><td class=\"num\">${timesorted[i]["ak"]}</td><td>${timesorted[i]["navn"]}</td></tr>`
 	}
 
 	// Client sorting/output
