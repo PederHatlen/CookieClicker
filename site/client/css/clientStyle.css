@@ -25,7 +25,26 @@ main{
 #cookie:active{width: 48vmin; height: 48vmin;}
 
 h1{margin: 0;}
-img{height: 5rem;}
+img{
+	height: 5rem;
+	image-rendering: pixelated;
+}
+
+h2, h1, #cookie{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+	user-drag: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+	filter: drop-shadow(0 0 0.25rem #000);
+}
 
 #timeup{
 	display: none;
@@ -38,9 +57,10 @@ img{height: 5rem;}
 	background: #000000a0;
 }
 #timeupBox{
-	background: rgb(182, 36, 138);
+	background: #bc8327;
 	padding: 20px;
 	user-select: none;
+	border: white solid 5px;
 }
 #tryAgain{
 	text-decoration: underline;
@@ -51,3 +71,12 @@ img{height: 5rem;}
 td{text-align: right;}
 
 .vertical{flex-direction: column;}
+
+canvas {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
