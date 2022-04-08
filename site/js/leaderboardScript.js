@@ -4,7 +4,7 @@ let mainTableEl = document.getElementById("mainTable");
 let newestTableEl = document.getElementById("newestTable");
 let clientTableEl = document.getElementById("clientTable");
 
-let soccAddr = "10.22.39.100:8000";
+let soccAddr = "http://api.cookie";
 let showDebug = false;
 
 let results;
