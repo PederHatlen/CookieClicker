@@ -3,7 +3,7 @@ async function sendData(form, CID, clicks){
 	formdata.append("cid", CID);
 	formdata.append("ak", clicks);
 
-	await fetch("http://10.22.39.100:8000", {
+	await fetch("http://api.cookie", {
 		method: 'POST',
 		mode: 'no-cors',
 		headers: {'Content-Type' : 'multipart/formdata'},
