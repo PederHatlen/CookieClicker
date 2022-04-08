@@ -1,6 +1,6 @@
 # CookieClicker
 
-Dette er Server funksjonaliteten minus Web-APIen *([https://github.com/Zkrgu/cookie-clicker](https://github.com/Zkrgu/cookie-clicker))* 
+Dette er Server funksjonaliteten minus Web-APIen *([https://github.com/Zkrgu/cookie-clicker](https://github.com/Zkrgu/cookie-clicker))*  
 Dette er også min egen klikkerklient (**site/client/**)
 
 ## Oppsett
