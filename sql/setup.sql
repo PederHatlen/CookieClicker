@@ -17,10 +17,6 @@ CREATE TABLE resultat (
 	FOREIGN KEY (klient_id) REFERENCES klienter(klient_id)
 );
 
-insert into klienter (navn) VALUES ("Peder");
-insert into klienter (navn) VALUES ("Jonas");
-
-
 create user 'api'@'%' identified with mysql_native_password by [API Password];
 create user 'cookie_io'@'%' identified with mysql_native_password by [cookie_io Password];
 

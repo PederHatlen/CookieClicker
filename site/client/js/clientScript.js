@@ -9,8 +9,8 @@ let statusEl = document.getElementById("status")
 
 let inputAkEl = document.getElementById("ak");
 
-let timerLen = 3000; // Timer length in milliseconds
-let CID = 1;
+let timerLen = 30000; // Timer length in milliseconds
+let CID = 12;
 
 let clicks = 0;
 let endtime;

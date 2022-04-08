@@ -1,0 +1,1 @@
+insert into klienter (navn) VALUES ("Ali"), ("Arin"), ("Aslak"), ("August"), ("Eirik"), ("Even"), ("JonasK"), ("JonasØ"), ("Kantam"), ("KG"), ("Mathias"), ("Peder"), ("Srimon"), ("Tias"), ("Titas"), ("Vilmer");
