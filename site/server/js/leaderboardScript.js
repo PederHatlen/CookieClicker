@@ -38,14 +38,17 @@ function render(){
 	for (let i = 0; i < clients.length; i++) clients[i]["runs"] = 0;
 	
 	// Sorting results (timesort is done after, becouse leaderboard possition is also needed).
+	let toppsort = sort2d(Array.from(results), "ak");
+	for (let i = 0; i < toppsort.length; i++) {
+		toppsort[i]["pos"] = i+1;
+		clients[toppsort[i]["cid"]-1]["runs"] += 1;
 	}
 	let timesort = sort2d(Array.from(toppsort), "ts", (e)=>Date.parse(e));
 
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
-		let topClientName = clients[toppsorted[i]["cid"]]["navn"].toLowerCase();
-		mainTableEl.innerHTML+= `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th class=\"placement\">#${toppsorted[i]["pos"]}</th><td class=\"num\">${toppsorted[i]["ak"]}</td><td>${toppsorted[i]["navn"]}</td><td><img src=\"images/ClientImages/${topClientName}.png\"alt=\"${topClientName}\" title=\"${topClientName}\"></td></tr>`;
-		newestTableEl.innerHTML += `<tr onclick="remove('${timesorted[i]["itemI"]}')"><th class=\"placement\">#${timesorted[i]["pos"]}</th><td class=\"num\">${timesorted[i]["ak"]}</td><td>${timesorted[i]["navn"]}</td></tr>`
+		let topCliName = clients[toppsort[i]["cid"]-1]["navn"].toLowerCase();
+		let newCliName = clients[timesort[i]["cid"]-1]["navn"].toLowerCase();
 	}
 
 	// Client sorting/output
