@@ -68,14 +68,16 @@ function render(){
 	// Client sorting/output
 	let runsSorted = sort2d(Array.from(clients), "runs");
 	for (let i = 0; i < clients.length; i++) {
-		let name = runsSorted[i]["navn"].toLowerCase();
-		clientTableEl.innerHTML += 
-		`<tr>
-			<th>#${i+1}</th>
-			<td class=\"num\">${runsSorted[i]["runs"]}</td>
-			<td class="spacer">${runsSorted[i]["navn"]}</td>
-			<td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td>
-		</tr>`;
+		if(runsSorted[i]["runs"] > 0){
+			let name = runsSorted[i]["navn"].toLowerCase();
+			clientTableEl.innerHTML += 
+			`<tr>
+				<th>#${i+1}</th>
+				<td class=\"num\">${runsSorted[i]["runs"]}</td>
+				<td class="spacer">${runsSorted[i]["navn"]}</td>
+				<td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td>
+			</tr>`;
+		}else break;
 	}
 }
 
