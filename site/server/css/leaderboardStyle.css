@@ -40,7 +40,8 @@ img{
 
 #main, #newest, #client{
 	height: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	padding: 0 20px;
 }
 #main{
@@ -56,7 +57,10 @@ img{
 	background: var(--klientListe, #133774);
 }
 
-table{border-spacing: 0px 0px;}
+table{
+	border-spacing: 0px 0px;
+  	table-layout: fixed;
+}
 th, td{
 	font-size: 1.5rem;
 	text-align: left;
@@ -71,7 +75,16 @@ td img{
 	height: 2rem;
 	image-rendering: pixelated;
 }
+.spacer{width: 100%;}
 
+::-webkit-scrollbar {width: 5px;}
+::-webkit-scrollbar-track {opacity: 0;}
+::-webkit-scrollbar-thumb {
+	background: #fff5;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #fff9;
+}
 
 .horizontal, header, footer, h1{
 	display: flex;
