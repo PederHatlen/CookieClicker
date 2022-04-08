@@ -1,5 +1,5 @@
 <?php 
-    require 'php/dblogin.php'; 	// login Details is retrieved from dblogin.php, which is gitignored
+    require 'dblogin.php'; 	// login Details is retrieved from dblogin.php, which is gitignored
     $con = mysqli_connect(constant("DB_HOST"), constant("DB_USERNAME"), constant("DB_PASSWORD"), constant("DB_NAME"));
     if (!$con) {die("Connection failed: " . mysqli_connect_error());} // Check connection
     $con->set_charset("utf8"); //Angi UTF-8 som tegnsett
