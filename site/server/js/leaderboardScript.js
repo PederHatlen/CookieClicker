@@ -39,7 +39,8 @@ function render(){
 	
 	// Sorting results (timesort is done after, becouse leaderboard possition is also needed).
 	}
-	let timesorted = sort2dts(Array.from(toppsorted), "ts");
+	let timesort = sort2d(Array.from(toppsort), "ts", (e)=>Date.parse(e));
+
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
 		let topClientName = clients[toppsorted[i]["cid"]]["navn"].toLowerCase();
@@ -62,5 +63,11 @@ function remove(i){
 }
 
 // 2d sorting function, takes 
+function sort2d(arr, val, func=null, asc = true){
+	if (func == null) func = (e)=>e;
+	return arr.sort((a, b)=>{
+		return asc?(func(b[val]) - func(a[val])):(func(a[val]) - func(b[val]));
+	});
+}
 
 startup();
