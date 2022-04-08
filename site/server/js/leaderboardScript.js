@@ -48,14 +48,34 @@ function render(){
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
 		let topCliName = clients[toppsort[i]["cid"]-1]["navn"].toLowerCase();
+		mainTableEl.innerHTML+= 
+		`<tr onclick="remove(${toppsort[i]["itemI"]})">
+			<th class=\"placement\">#${toppsort[i]["pos"]}</th>
+			<td class=\"num\">${toppsort[i]["ak"]}</td>
+			<td class="spacer">${toppsort[i]["navn"]}</td>
+			<td><img src=\"images/ClientImages/${topCliName}.png\"alt=\"${topCliName}\"title=\"${topCliName}\"></td>
+		</tr>`;
 		let newCliName = clients[timesort[i]["cid"]-1]["navn"].toLowerCase();
+		newestTableEl.innerHTML += 
+		`<tr onclick="remove(${timesort[i]["itemI"]})">
+			<th class=\"placement\">#${timesort[i]["pos"]}</th>
+			<td class=\"num\">${timesort[i]["ak"]}</td>
+			<td class="spacer">${timesort[i]["navn"]}</td>
+			<td><img src=\"images/ClientImages/${newCliName}.png\"alt=\"${newCliName}\"title=\"${newCliName}\"></td>
+		</tr>`;
 	}
 
 	// Client sorting/output
 	let runsSorted = sort2d(Array.from(clients), "runs");
 	for (let i = 0; i < clients.length; i++) {
 		let name = runsSorted[i]["navn"].toLowerCase();
-		clientTableEl.innerHTML += `<tr><th>#${i+1}</th><td class=\"num\">${runsSorted[i]["runs"]}</td><td>${runsSorted[i]["navn"]}</td><td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td></tr>`;
+		clientTableEl.innerHTML += 
+		`<tr>
+			<th>#${i+1}</th>
+			<td class=\"num\">${runsSorted[i]["runs"]}</td>
+			<td class="spacer">${runsSorted[i]["navn"]}</td>
+			<td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td>
+		</tr>`;
 	}
 }
 
