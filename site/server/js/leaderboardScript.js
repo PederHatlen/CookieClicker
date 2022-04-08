@@ -4,35 +4,24 @@ let mainTableEl = document.getElementById("mainTable");
 let newestTableEl = document.getElementById("newestTable");
 let clientTableEl = document.getElementById("clientTable");
 
-let soccAddr = "api.cookie";
-let showDebug = false;
+let ip = "api.cookie";
+let showDebug = true;
 
 let results;
-let clients = {};
-let clientsRaw;
-let clientKeys;
+let clients;
+
+const socket = io(`http://${ip}`);
+// const socket = new WebSocket(`ws://api.cookie/socket.io/`)
+
+socket.on("resultat", data => {results.push(data); render();});
 
 // Async function for getting init data, and starting websocket.
 // Async because of fetch which "needs" await
 async function startup(){
-	let socket = io(`ws://${soccAddr}`);
-	results = await fetch(`http://${soccAddr}`).then((r)=>{return r.json()});
-	clientsRaw = await fetch(`http://${soccAddr}/klienter`).then((r)=>{return r.json()});
+	results = await fetch(`http://${ip}`).then((r)=>{return r.json()});
+	clients = await fetch(`http://${ip}/klienter`).then((r)=>{return r.json()});
+	sort2d(clients, "cid");
 
-	for (let i = 0; i < clientsRaw.length; i++) {clients["cid"+clientsRaw[i]["klient_id"]] = clientsRaw[i];}
-	clientKeys = Object.keys(clients);
-
-	// On message, add to results and rerender
-	socket.on("message", data => {results.push(data); render();});
-
-	if (showDebug){
-		socket.on("connection", ()=>{
-			conInfoEL.innerHTML = "Connected";
-			conInfoEL.style.background = "green";
-		});
-		socket.on('disconnect', socketError);
-		socket.on("connect_error", socketError);
-	}
 	render();
 }
 
@@ -46,34 +35,29 @@ function render(){
 	mainTableEl.innerHTML = "";
 	newestTableEl.innerHTML = "";
 	clientTableEl.innerHTML = "";
-	console.log(clients);
 
 	// Adding values to both arrays
 	for (let i = 0; i < results.length; i++) results[i]["itemI"] = i;
-	for (let i = 0; i < clientKeys.length; i++) {
-		clients[clientKeys[i]]["runs"] = 0; console.log(i);
-	}
+	for (let i = 0; i < clients.length; i++) clients[i]["runs"] = 0;
 	
 	// First sort/adding possition and calculating clients
 	let toppsorted = sort2d(Array.from(results), "ak");
 	for (let i = 0; i < toppsorted.length; i++) {
 		toppsorted[i]["pos"] = i+1;
-		console.log(toppsorted[i]["cid"], clients["cid"+toppsorted[i]["cid"]]);
-		clients["cid"+toppsorted[i]["cid"]]["runs"] += 1;
+		clients[toppsorted[i]["cid"]]["runs"] += 1;
 	}
-	let timesorted = sort2dts(Array.from(toppsorted));
+	let timesorted = sort2dts(Array.from(toppsorted), "ts");
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
-		let topClientName = clients["cid"+toppsorted[i]["cid"]]["navn"].toLowerCase();
+		let topClientName = clients[toppsorted[i]["cid"]]["navn"].toLowerCase();
 		mainTableEl.innerHTML+= `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th class=\"placement\">#${toppsorted[i]["pos"]}</th><td class=\"num\">${toppsorted[i]["ak"]}</td><td>${toppsorted[i]["navn"]}</td><td><img src=\"images/ClientImages/${topClientName}.png\"alt=\"${topClientName}\" title=\"${topClientName}\"></td></tr>`;
-		newestTableEl.innerHTML += `<tr onclick="remove('${toppsorted[i]["itemI"]}')"><th class=\"placement\">#${timesorted[i]["pos"]}</th><td class=\"num\">${timesorted[i]["ak"]}</td><td>${timesorted[i]["navn"]}</td></tr>`
+		newestTableEl.innerHTML += `<tr onclick="remove('${timesorted[i]["itemI"]}')"><th class=\"placement\">#${timesorted[i]["pos"]}</th><td class=\"num\">${timesorted[i]["ak"]}</td><td>${timesorted[i]["navn"]}</td></tr>`
 	}
-	sort2d(clientKeys, "runs");
+	let runsSorted = sort2d(Array.from(clients), "runs");
 	// Client sorting/output
-	for (let i = 0; i < clientKeys.length; i++) {
-		console.log(clients[clientKeys[i]]["navn"]);
-		let name = clients[clientKeys[i]]["navn"].toLowerCase();
-		clientTableEl.innerHTML += `<tr><th>#${i+1}</th><td class=\"num\">${clients[clientKeys[i]]["runs"]}</td><td>${clients[clientKeys[i]]["navn"]}</td><td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td></tr>`;
+	for (let i = 0; i < clients.length; i++) {
+		let name = runsSorted[i]["navn"].toLowerCase();
+		clientTableEl.innerHTML += `<tr><th>#${i+1}</th><td class=\"num\">${runsSorted[i]["runs"]}</td><td>${runsSorted[i]["navn"]}</td><td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td></tr>`;
 	}
 }
 
