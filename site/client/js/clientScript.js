@@ -1,6 +1,15 @@
 let cookiEl = document.getElementById("cookie");
 let clicksEl = document.getElementById("clicks");
 let formEl = document.getElementById("form");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext('2d');
+
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+let cookieImage = new Image()
+cookieImage.src = "images/Cookie.png";
+let cookieArr = [];
 
 let timerEl = document.getElementById("timer");
 let timeupEl = document.getElementById("timeup");
@@ -22,12 +31,13 @@ cookiEl.addEventListener("click", cookieClick);
 // registering clicks and starting timer
 function cookieClick(){
 	if(!stoptimer){
-		if (clicks === 0) {
+		if (clicks == 0) {
 			endtime = Date.now() + timerLen;
 			requestAnimationFrame(timer);
 		}
 		clicks++;
 		clicksEl.innerHTML = clicks+" klikk ";
+		newCookie();
 	}
 }
 
@@ -44,6 +54,9 @@ function tryAgain(){
 	clicks = 0;
 	stoptimer = false;
 	timeupEl.style.display = "none";
+
+	cookieArr = [];
+	resize();
 }
 
 // Timer function
@@ -60,3 +73,37 @@ formEl.addEventListener("submit", function(e){
 	sendData(formEl, CID, clicks);
 	tryAgain();
 });
+
+function resize(){
+	width = window.innerWidth;
+	height = window.innerHeight;
+
+	canvas.width = width;
+	canvas.height = height;
+
+	for (let i = 0; i < cookieArr.length; i++) {
+		let tempS = Math.floor(cookieArr[i][0] * 100);
+		let tempX = Math.floor(cookieArr[i][1] * (width-tempS));
+		let tempY = Math.floor(cookieArr[i][2] * (height-tempS));
+
+		ctx.drawImage(cookieImage, tempX, tempY, tempS, tempS);
+	}
+}
+
+window.addEventListener("resize", resize);
+
+function newCookie(){
+	let tempS = Math.random();
+	let tempX = Math.random();
+	let tempY = Math.random();
+
+	cookieArr.push([tempS, tempX, tempY]);
+
+	tempS = Math.floor(tempS * 100);
+	tempX = Math.floor(tempX * (width-tempS));
+	tempY = Math.floor(tempY * (height-tempS));
+
+	ctx.drawImage(cookieImage, tempX, tempY, tempS, tempS);
+}
+
+resize()
