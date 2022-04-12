@@ -43,6 +43,8 @@ img{
 	overflow-x: hidden;
 	overflow-y: scroll;
 	padding: 0 20px;
+	scrollbar-width: thin;
+	scrollbar-color: #fff5 Transparent;
 }
 #main{
 	grid-area: main;
@@ -79,12 +81,8 @@ td img{
 
 ::-webkit-scrollbar {width: 5px;}
 ::-webkit-scrollbar-track {opacity: 0;}
-::-webkit-scrollbar-thumb {
-	background: #fff5;
-}
-::-webkit-scrollbar-thumb:hover {
-	background: #fff9;
-}
+::-webkit-scrollbar-thumb {background: #fff5;}
+::-webkit-scrollbar-thumb:hover {background: #fff9;}
 
 .horizontal, header, footer, h1{
 	display: flex;
