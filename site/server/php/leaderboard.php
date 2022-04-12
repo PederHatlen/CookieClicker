@@ -22,13 +22,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Leaderboard</title>
-	<link rel="shortcut icon" href="images/im.svg" type="image/x-icon">
-	<link rel="stylesheet" href="css/leaderboardStyle.css">
+	<link rel="shortcut icon" href="../images/im.svg" type="image/x-icon">
+	<link rel="stylesheet" href="../css/leaderboardStyle.css">
 </head>
 <body>
 	<header>
-		<h1 class="horizontal"><img src="images/Pointer.svg" alt="Pointer">Leaderboard</h1>
-		<img src="images/kuben_im.svg" alt="Kuben IM">
+		<h1 class="horizontal"><img src="../images/Pointer.svg" alt="Pointer">Leaderboard</h1>
+		<img src="../images/kuben_im.svg" alt="Kuben IM">
 	</header>
 	<div id="main">
 		<h2>Toppliste</h2>
