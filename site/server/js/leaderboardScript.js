@@ -94,7 +94,7 @@ function render(){
 	for (let i = 0; i < clients.length; i++) {
 		if(runsSorted[i]["runs"] > 0){
 			let name = runsSorted[i]["navn"].toLowerCase();
-			clientTableEl.innerText += 
+			clientTableEl.innerHTML += 
 			`<tr>
 				<th class=\"placement\">#${(i+1) +(i == 0? "&nbsp;":"")}</th>
 				<td class=\"num\">${runsSorted[i]["runs"]}</td>
