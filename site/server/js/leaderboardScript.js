@@ -72,7 +72,7 @@ function render(){
 			let name = runsSorted[i]["navn"].toLowerCase();
 			clientTableEl.innerHTML += 
 			`<tr>
-				<th>#${i+1}</th>
+				<th class=\"placement\">#${(i+1) +(i == 0? "&nbsp;":"")}</th>
 				<td class=\"num\">${runsSorted[i]["runs"]}</td>
 				<td class="spacer">${runsSorted[i]["navn"]}</td>
 				<td><img src=\"images/ClientImages/${name}.png\"alt=\"${name}\" title=\"${name}\"></td>
