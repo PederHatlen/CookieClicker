@@ -37,7 +37,7 @@ function sanitizeHTML(text) {
 function makeRow(arr, i){
 	let cliName = clients[arr[i]["cid"]-1]["navn"].toLowerCase();
 	let tr = document.createElement("tr");
-	tr.onclick = `remove(${arr[i]["itemI"]})`;
+	tr.addEventListener("click", (e)=>{remove(arr[i]["itemI"])});
 
 	let placement = document.createElement("th");
 	placement.classList = "placement";
