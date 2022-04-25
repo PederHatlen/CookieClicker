@@ -17,7 +17,7 @@ socket.on("resultat", data => {results.push(data); render();});
 // Async function for getting init data, async because fetch "needs" await
 async function startup(){
 	// Test data
-	// results = await fetch(`./json/results.json`).then((r)=>{return r.json()});
+	// results = await fetch(`./json/results_modified.json`).then((r)=>{return r.json()});
 	// clients = await fetch(`./json/clients.json`).then((r)=>{return r.json()});
 
 	results = await fetch(`http://${ip}`).then((r)=>{return r.json()});
@@ -25,6 +25,44 @@ async function startup(){
 	sort2d(clients, "cid", null, false);
 
 	render();
+}
+
+// https://remarkablemark.org/blog/2019/11/29/javascript-sanitize-html/
+function sanitizeHTML(text) {
+	var element = document.createElement('div');
+	element.innerText = text;
+	return element.innerHTML;
+}
+
+function makeRow(arr, i){
+	let cliName = clients[arr[i]["cid"]-1]["navn"].toLowerCase();
+	let tr = document.createElement("tr");
+	tr.onclick = `remove(${arr[i]["itemI"]})`;
+
+	let placement = document.createElement("th");
+	placement.classList = "placement";
+	placement.innerHTML = sanitizeHTML(`#${arr[i]["pos"]}`);
+	tr.append(placement);
+
+	let num = document.createElement("td");
+	num.classList = "num";
+	num.innerHTML = sanitizeHTML(arr[i]["ak"]);
+	tr.append(num);
+
+	let name = document.createElement("td");
+	name.classList = "spacer";
+	name.innerHTML = sanitizeHTML(arr[i]["navn"]);
+	tr.append(name);
+
+	let imgTd = document.createElement("td");
+	let img = document.createElement("img");
+	img.src = `images/ClientImages/${cliName}.png`;
+	img.alt = cliName;
+	img.title = cliName;
+	imgTd.append(img);
+	tr.append(imgTd);
+
+	return tr;
 }
 
 // Render function, takes the arrays, sorts them and outputs to table
@@ -47,22 +85,8 @@ function render(){
 
 	// Adding the results to the table
 	for (let i = 0; i < results.length; i++) {
-		let topCliName = clients[toppsort[i]["cid"]-1]["navn"].toLowerCase();
-		mainTableEl.innerHTML+= 
-		`<tr onclick="remove(${toppsort[i]["itemI"]})">
-			<th class=\"placement\">#${toppsort[i]["pos"]}</th>
-			<td class=\"num\">${toppsort[i]["ak"]}</td>
-			<td class="spacer">${toppsort[i]["navn"]}</td>
-			<td><img src=\"images/ClientImages/${topCliName}.png\"alt=\"${topCliName}\"title=\"${topCliName}\"></td>
-		</tr>`;
-		let newCliName = clients[timesort[i]["cid"]-1]["navn"].toLowerCase();
-		newestTableEl.innerHTML += 
-		`<tr onclick="remove(${timesort[i]["itemI"]})">
-			<th class=\"placement\">#${timesort[i]["pos"]}</th>
-			<td class=\"num\">${timesort[i]["ak"]}</td>
-			<td class="spacer">${timesort[i]["navn"]}</td>
-			<td><img src=\"images/ClientImages/${newCliName}.png\"alt=\"${newCliName}\"title=\"${newCliName}\"></td>
-		</tr>`;
+		mainTableEl.append(makeRow(toppsort, i));
+		newestTableEl.append(makeRow(timesort, i));
 	}
 
 	// Client sorting/output
@@ -70,7 +94,7 @@ function render(){
 	for (let i = 0; i < clients.length; i++) {
 		if(runsSorted[i]["runs"] > 0){
 			let name = runsSorted[i]["navn"].toLowerCase();
-			clientTableEl.innerHTML += 
+			clientTableEl.innerText += 
 			`<tr>
 				<th class=\"placement\">#${(i+1) +(i == 0? "&nbsp;":"")}</th>
 				<td class=\"num\">${runsSorted[i]["runs"]}</td>
